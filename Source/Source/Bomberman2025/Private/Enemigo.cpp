@@ -8,9 +8,9 @@ AEnemigo::AEnemigo()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Personjae"));
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Personje"));
 	Mesh->SetupAttachment(RootComponent);
-	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/ Script / Engine.StaticMesh'/Game/LevelPrototyping/Meshes/SM_Ramp.SM_Ramp'"));
+	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/LevelPrototyping/Meshes/SM_Ramp.SM_Ramp'"));
 	if (Asset.Object != nullptr) {
 		Mesh->SetStaticMesh(Asset.Object);
 	}

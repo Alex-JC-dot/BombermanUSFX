@@ -63,6 +63,16 @@ protected:
     ABloque* BloqueActual = nullptr;
     void Spawnearbloques(FVector Posicion, int32 valor);
 public:
+	void MoverBloque();
+	TMap<int32, TArray<AActor*>> BloquesPorTipo;
+	void SpawnEnemigoSubterraneo();
+	void SpawnEnemigoAereo();
+	void SpawnEnemigoTerrestre();
+	void SpawnEnemigoAcuatico();
+	// alamacenar todo en un array
 	UPROPERTY()
-	AEnemigo* Enemigo;
+	TArray<ABloque*> TodosLosBloques;
+
+	UPROPERTY()
+	TArray<AEnemigo*> TodosLosEnemigos;
 };

@@ -24,4 +24,12 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UPROPERTY()
 	UStaticMeshComponent* Mesh;
+private:
+	FVector PosInicial; 
+	FVector PosFinal; 
+	float TiempoDeMovimiento; 
+	float TiempoTranscurrido; 
+public:
+	void IniciarMovimiento(FVector NuevaPosObjetivo, float Tiempo);
+	void MoverBloque(float DeltaTime);
 };
