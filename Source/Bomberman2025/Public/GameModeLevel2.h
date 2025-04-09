@@ -6,9 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "GameModeLevel2.generated.h"
 
-/**
- * 
- */
+class ABloque;
+class ABombermanCharacter;
 UCLASS()
 class BOMBERMAN2025_API AGameModeLevel2 : public AGameModeBase
 {
@@ -18,15 +17,41 @@ public:
 
 protected:
     virtual void BeginPlay() override;
+    TArray<TArray<int32 >> Laberinto=
+  {
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,2,0,0,0,2,0,2,0,0,0,5,0,0,0,5,0,0,1},
+    {1,0,2,2,2,0,2,0,2,2,5,0,5,5,5,0,5,5,0,1},
+    {1,0,0,0,2,0,0,0,0,0,5,0,0,0,5,0,0,0,0,1},
+    {1,2,2,0,2,2,2,2,2,0,5,5,5,0,5,5,5,5,0,1},
+    {1,0,0,0,0,0,0,0,2,0,0,0,5,0,0,0,0,0,0,1},
+    {1,0,2,2,2,2,2,0,2,2,5,0,5,5,5,5,5,5,0,1},
+    {1,0,2,0,0,0,2,0,0,0,5,0,0,0,5,0,0,5,0,1},
+    {1,0,2,0,2,2,2,2,2,0,5,5,5,0,5,5,0,5,0,1},
+    {1,0,0,0,2,0,0,0,0,2,0,0,1,0,0,0,0,0,0,1},
+    {1,3,3,0,3,3,3,0,3,3,4,0,4,4,4,0,4,4,4,1},
+    {1,0,0,0,0,0,3,0,0,0,4,0,0,0,4,0,0,0,0,1},
+    {1,0,3,3,3,0,3,3,3,0,4,4,4,0,4,4,4,4,0,1},
+    {1,0,3,0,0,0,0,0,3,0,0,0,4,0,0,0,0,0,0,1},
+    {1,0,3,0,3,3,3,0,3,4,4,0,4,4,4,4,4,4,0,1},
+    {1,0,0,0,3,0,0,0,0,0,4,0,0,0,0,0,0,4,0,1},
+    {1,3,3,0,3,0,3,3,3,0,4,4,4,4,4,4,0,4,0,1},
+    {1,0,0,0,0,0,3,0,0,0,0,0,0,0,0,4,0,0,0,1},
+    {1,0,3,3,3,3,3,0,3,3,4,4,4,4,0,4,4,4,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+    };
+    ABloque* Bloque = nullptr;
 
-private:
-    void GenerarLaberinto();
-
-    UPROPERTY(EditDefaultsOnly, Category = "Configuración")
-    TSubclassOf<class AMuro1> ClaseMuro1;
-
-    static constexpr int filas = 20;
-    static constexpr int columnas = 20;
-
-    int MapaLaberinto[filas][columnas];
+protected:
+    void ColocarBloque(int32 valor,  FVector Ubicacion);
+protected:
+    void StartPlayer();
+    TArray<FVector> PuntoVacio; // guardar los vacios
+    /*
+    void CambiarBloque(FVector);
+    FTimerHandle Temporizador;
+    TArray<FVector> BloqueLadrillo;
+    TArray<AActor*> BloqueLadrillo;
+    */
 };
+

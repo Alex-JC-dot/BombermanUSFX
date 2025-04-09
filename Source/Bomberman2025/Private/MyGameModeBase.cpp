@@ -2,6 +2,8 @@
 
 #include "Bloque.h"
 #include "MyGameModeBase.h"
+#include "UObject/ConstructorHelpers.h"
+#include "Engine/World.h"
 AMyGameModeBase::AMyGameModeBase()
 {
 	// set default pawn class to our Blueprinted character

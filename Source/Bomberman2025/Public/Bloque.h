@@ -24,4 +24,14 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	UPROPERTY()
 	UStaticMeshComponent* Mesh;
+public:
+	void MoverBloque(float DeltaTime);
+	float alturaMax;
+	UPROPERTY(EditAnywhere)
+	bool activado;
+	bool Subiendo;
+	float tiempo;
+	float velocidad=200;
+	FVector PosicionActual;
+	FVector PosicionFinal;
 };
