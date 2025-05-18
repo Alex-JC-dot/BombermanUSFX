@@ -58,6 +58,7 @@ protected:
 			
 
 protected:
+	virtual void BeginPlay() override;
 
 	virtual void NotifyControllerChanged() override;
 

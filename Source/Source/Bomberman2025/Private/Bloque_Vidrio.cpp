@@ -5,7 +5,7 @@
 
 ABloque_Vidrio::ABloque_Vidrio()
 {
-	auto MaterialAsset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Glass.M_Glass'"));
+	auto MaterialAsset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.M_Tech_Hex_Tile_Pulse'"));
 	if (MaterialAsset.Object != nullptr) {
 		Mesh->SetMaterial(0, MaterialAsset.Object);
 	}

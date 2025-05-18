@@ -2,24 +2,55 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include"Bloque.h"
+#include "FabricaBloques.h"
+#include "FabricaBloqueMadera.h"
+#include "AbstractFabrica.h"
 #include "MyGameModeBase.generated.h"
-/**
- * 
- */
-class ABloque;
 UCLASS()
 class BOMBERMAN2025_API AMyGameModeBase : public AGameModeBase
 {
-	GENERATED_BODY()
+    GENERATED_BODY()
+
 public:
-	AMyGameModeBase();
-	public:
+    AMyGameModeBase();
+
+protected:
     virtual void BeginPlay() override;
+    TArray<TArray<int32>> Laberinto =
+    {
+     {3, 4, 4, 4, 3, 4, 3, 4, 3, 4, 6, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3},
+    {4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 4},
+    {4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4},
+    {3, 2, 1, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 1, 2, 4},
+    {4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 5, 1, 0, 1, 0, 1, 5, 1, 1, 4, 3},
+    {4, 2, 1, 0, 0, 5, 5, 5, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 5, 1, 2, 4},
+    {3, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 4, 4},
+    {4, 2, 1, 5, 0, 5, 0, 5, 5, 0, 5, 5, 5, 5, 0, 5, 0, 5, 0, 1, 2, 3},
+    {4, 4, 1, 5, 1, 0, 1, 0, 1, 0, 1, 0, 1, 5, 1, 0, 1, 5, 1, 1, 4, 4},
+    {3, 2, 1, 5, 5, 0, 5, 5, 5, 5, 0, 5, 0, 5, 5, 0, 5, 5, 5, 1, 2, 4},
+    {4, 4, 1, 5, 1, 5, 1, 5, 1, 0, 1, 0, 1, 5, 1, 0, 1, 0, 1, 1, 4, 3},
+    {4, 2, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 1, 2, 4},
+    {3, 4, 1, 0, 1, 5, 1, 0, 1, 0, 1, 0, 1, 5, 1, 5, 1, 0, 1, 1, 4, 4},
+    {4, 2, 1, 0, 0, 5, 0, 5, 0, 5, 5, 5, 0, 0, 5, 5, 5, 0, 0, 1, 2, 3},
+    {4, 4, 1, 5, 1, 0, 1, 5, 1, 0, 1, 0, 1, 0, 1, 5, 1, 5, 1, 1, 4, 4},
+    {3, 2, 1, 5, 0, 5, 0, 0, 5, 5, 0, 5, 0, 5, 0, 0, 5, 5, 5, 1, 2, 4},
+    {4, 4, 1, 5, 1, 0, 1, 5, 1, 0, 1, 0, 1, 0, 1, 5, 1, 0, 1, 1, 4, 3},
+    {4, 2, 1, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 1, 2, 4},
+    {3, 4, 1, 5, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 5, 1, 1, 4, 4},
+    {4, 2, 1, 5, 0, 0, 5, 5, 5, 5, 0, 5, 0, 5, 5, 0, 5, 5, 5, 1, 2, 3},
+    {4, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4},
+    {4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 2, 4, 4},
+    {3, 4, 4, 3, 4, 4, 3, 4, 4, 3, 7, 4, 3, 4, 4, 3, 4, 4, 3, 4, 4, 3}
+    };
+    ABloque* Bloque = nullptr;
 public:
 
-	UPROPERTY()
-	ABloque* SpawnedActor;
-	UFUNCTION()
-	void DestroyActorFunction();
-	FTimerHandle TimerHandle;
+    FString NombreBloque;
+    AFabricaBloques* Fabrica;
+    AFabricaBloqueMadera* FabricaMadera;
+    TArray<FVector > Posicion0;
+    int EnemigosCreados = 0;
+    int MaxEnemigos = 3;
+   
 };

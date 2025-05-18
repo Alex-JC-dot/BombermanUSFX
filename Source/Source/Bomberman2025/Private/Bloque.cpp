@@ -6,7 +6,7 @@
 // Sets default values
 ABloque::ABloque()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("BaseMeshComponent"); //creamos un componente para el actor
@@ -17,39 +17,67 @@ ABloque::ABloque()
 	{
 		Mesh->SetStaticMesh(MeshAsset.Object);
 	}
-
+	Malla = Mesh->GetStaticMesh();
+	
 }
 
 // Called when the game starts or when spawned
 void ABloque::BeginPlay()
 {
 	Super::BeginPlay();
-}
+	PosicionInicial = GetActorLocation();
+	
 
-// Called every frame
+}
 void ABloque::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	MoverBloque(DeltaTime);
-}
-void ABloque::IniciarMovimiento(FVector NuevaPosObjetivo, float Tiempo)
-{
-	PosInicial = GetActorLocation(); 
-	PosFinal = NuevaPosObjetivo; 
-	TiempoDeMovimiento = Tiempo;     
-	TiempoTranscurrido = 0.0f;       
-}
-void ABloque::MoverBloque(float DeltaTime)
-{
-	if (TiempoTranscurrido < TiempoDeMovimiento)
-	{
-		// Calcula cuánto ha avanzado el bloque
-		TiempoTranscurrido += DeltaTime;
-		float Progreso = FMath::Clamp(TiempoTranscurrido / TiempoDeMovimiento, 0.0f, 1.0f);
 
-		// Calcula la nueva posición
-		FVector NuevaPos = FMath::Lerp(PosInicial, PosFinal , Progreso);
-		SetActorLocation(NuevaPos);
+	if(Encendido&&Funcion){
+	Funcion(DeltaTime);
 	}
 }
+void ABloque::MovHorizontal(float time)
+{
+	PosicionActual = GetActorLocation();
+	if (PosicionActual.Y >= 400.0f + PosicionInicial.Y) {
+		Activado = false;
+	}
+	else if (PosicionActual.Y <= PosicionInicial.Y - 400.0f) {
+		Activado = true;
+	}
+	if (Activado) {
+		PosicionActual.Y += time * velocidad;
+	}
+	else
+	{
+		PosicionActual.Y -= time * velocidad;
+	}
 
+	SetActorLocation(PosicionActual);
+
+}
+void ABloque::MovVertical(float Tiempo)
+{
+	PosicionActual = GetActorLocation();
+	if (PosicionActual.Z >= AlturaMax) {
+		Activado = false;
+	}
+	else if(PosicionActual.Z<=0)
+	{
+		Activado = true;
+	}
+	if (Activado) {
+		PosicionActual.Z += Tiempo * velocidad;
+	}
+	else {
+		PosicionActual.Z -= Tiempo * velocidad;
+	}
+	SetActorLocation(PosicionActual);
+
+}
+FString ABloque::GetNombreBloque()
+{
+	//Return the name of this Potion
+	return NombreBloque;
+}

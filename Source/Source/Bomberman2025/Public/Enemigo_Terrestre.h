@@ -14,4 +14,5 @@ class BOMBERMAN2025_API AEnemigo_Terrestre : public AEnemigo
 {
 	GENERATED_BODY()
 	AEnemigo_Terrestre();	
+	USkeletalMeshComponent* Mesh;
 };

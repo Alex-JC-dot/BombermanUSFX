@@ -6,6 +6,9 @@
 #include  "Piso.h"
 #include  "Ladrillo.h"
 #include "Ladrillo2.h"
+#include "Director.h"
+#include "BuilderConcreto.h"
+#include "LaberintoTerminado.h"
 #include "UObject/ConstructorHelpers.h"
 
 ABomberman2025GameMode::ABomberman2025GameMode()
@@ -25,7 +28,7 @@ void ABomberman2025GameMode::BeginPlay()
 	FRotator Rotacion = FRotator::ZeroRotator;
 	if (GetWorld())
 	{
-		GetWorld()->SpawnActor<APiso>(APiso::StaticClass(), Ubicacion, Rotacion);
+		//GetWorld()->SpawnActor<APiso>(APiso::StaticClass(), Ubicacion, Rotacion);
 	}
 	FVector UbicacionInicial = FVector(-3500.0f, 3700.0f, 20.0f);  // Primera posición del bloque
 	float DistanciaEntreBloques = 400.0f;
@@ -72,4 +75,14 @@ void ABomberman2025GameMode::BeginPlay()
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("los bloques desapareceran en 60 segundos"));
 	}
+	//Abastract Factory
+
+
+	Director = GetWorld()->SpawnActor<ADirector>(ADirector::StaticClass());
+	BuilderConcreto = GetWorld()->SpawnActor<ABuilderConcreto>(ABuilderConcreto::StaticClass());
+	//Ingeniero
+	Director->LlamarConstructor(BuilderConcreto);
+	Director->ConstruirLaberinto();
+	ALaberintoTerminado*Laberinto=Director->GetLaberinto();
+
 }

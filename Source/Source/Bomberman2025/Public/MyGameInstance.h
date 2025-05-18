@@ -14,10 +14,11 @@ class BOMBERMAN2025_API UMyGameInstance : public UGameInstance
 {
 
 	GENERATED_BODY()
-public:    
-	UMyGameInstance();
-	// Variable para almacenar el personaje por defecto
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Configuración")
-	TSubclassOf<APawn> DefaultPlayerPawn;
-	
+public:
+	FString Nombre_Jugador;
+	int Puntacion;
+	virtual void Init() override;
+	UFUNCTION(BlueprintCallable)
+	void NombreJugador(const FString& nombre);
+
 };

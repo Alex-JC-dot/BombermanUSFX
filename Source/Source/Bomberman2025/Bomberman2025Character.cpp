@@ -3,6 +3,8 @@
 #include "Bomberman2025Character.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
+#include "MyUserWidget_1.h"
+#include "Blueprint/UserWidget.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -56,6 +58,21 @@ ABomberman2025Character::ABomberman2025Character()
 
 //////////////////////////////////////////////////////////////////////////
 // Input
+
+void ABomberman2025Character::BeginPlay()
+{
+	Super::BeginPlay();
+	APlayerController* Player= GetWorld()->GetFirstPlayerController();
+	if (Player) {
+		UMyUserWidget_1* Widget = CreateWidget<UMyUserWidget_1>(Player, UMyUserWidget_1::StaticClass());
+		if (Widget) {
+			Widget->AddToViewport();			
+		}
+	}
+
+
+
+}
 
 void ABomberman2025Character::NotifyControllerChanged()
 {

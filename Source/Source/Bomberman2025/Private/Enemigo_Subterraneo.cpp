@@ -3,11 +3,14 @@
 
 #include "Enemigo_Subterraneo.h"
 AEnemigo_Subterraneo::AEnemigo_Subterraneo() {
+	
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	RootComponent = Mesh;
 
-	auto Asset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT(" /Script/Engine.Material'/Game/StarterContent/Materials/M_Metal_Rust.M_Metal_Rust'"));
+	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT(" /Script/Engine.StaticMesh'/Game/Hechos/Equeletos/Enemigos/Topo/SM_Digglet.SM_Digglet'"));
 	if (Asset.Object != nullptr) {
 
-		Mesh->SetMaterial(0, Asset.Object);
+		Mesh->SetStaticMesh( Asset.Object);
 	}
 
 

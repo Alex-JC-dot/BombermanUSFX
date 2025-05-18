@@ -15,5 +15,7 @@ class BOMBERMAN2025_API ABloque_Concreto : public ABloque
 	GENERATED_BODY()
 public:
 	ABloque_Concreto();
-	
+	UMaterial* Material;
+protected:
+	virtual void BeginPlay() override; 
 };

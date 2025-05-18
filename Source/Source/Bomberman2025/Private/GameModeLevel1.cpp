@@ -1,7 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "GameModeLevel1.h"
-#include "Muro1.h"
+#include "Bloque.h"
+#include "FabricaBloques.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/World.h"
 
@@ -13,86 +14,37 @@ AGameModeLevel1::AGameModeLevel1()
     {
         DefaultPawnClass = PlayerPawnBPClass.Class;
     }
-
-    // Inicializar la matriz del laberinto dentro del constructor
-    constexpr int TempMapa[filas][columnas] =
-    {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1},
-        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-    };
-
-    // Copiar `TempMapa` a `MapaLaberinto`
-    for (int i = 0; i < filas; i++)
-    {
-        for (int j = 0; j < columnas; j++)
-        {
-            MapaLaberinto[i][j] = TempMapa[i][j];
-        }
-    }
 }
 
 void AGameModeLevel1::BeginPlay()
 {
     Super::BeginPlay();
-
-    if (!ClaseMuro1)
-    {
-        ClaseMuro1 = AMuro1::StaticClass();
-    }
-
-    GenerarLaberinto();
-}
-
-void AGameModeLevel1::GenerarLaberinto()
-{
-    if (!ClaseMuro1)
-    {
-        UE_LOG(LogTemp, Error, TEXT("ClaseMuro1 no asignada en GameMode_Nivel1"));
-        return;
-    }
-
     float TamanoCelda = 400.0f;
     FVector UbicacionInicial = FVector(-3994.488813, -3997.341838, -50.0f);
-
+    Fabrica = GetWorld()->SpawnActor<AFabricaBloques>(AFabricaBloques::StaticClass());
     if (GetWorld())
     {
-        for (int i = 0; i < filas; i++)
+        for (int i = 0; i < Laberinto.Num(); i++)
         {
-            for (int j = 0; j < columnas; j++)
+            for (int j = 0; j < Laberinto[i].Num(); j++)
             {
-                if (MapaLaberinto[i][j] == 1)
-                {
-                    FVector PosicionActual = UbicacionInicial + FVector(i * TamanoCelda, j * TamanoCelda, 50.0f);
-                    AMuro1* NuevoMuro1 = GetWorld()->SpawnActor<AMuro1>(ClaseMuro1, PosicionActual, FRotator::ZeroRotator);
+                int valor = Laberinto[i][j];
 
-                    if (NuevoMuro1)
-                    {
-                        NuevoMuro1->SetActorScale3D(FVector(4.0f, 5.0f, 4.0f));
-                    }
+                FVector PosicionActual = UbicacionInicial + FVector(i * TamanoCelda, j * TamanoCelda, 50.0f);
+                switch (valor)
+                {
+                case 1: NombreBloque = "Madera"; break;
+                case 2: NombreBloque = "Acero"; break;
+                case 3: NombreBloque = "Concreto"; break;
+                case 4: NombreBloque = "Ladrillo"; break;
+                default: NombreBloque = "";
+                    break;
                 }
+                if (Fabrica) {
+                    Fabrica->CrearBloque(NombreBloque, PosicionActual);
+                }
+
             }
         }
-    }
-
-    if (GEngine)
-    {
-        GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("Laberinto 15x15 generado correctamente"));
     }
 }

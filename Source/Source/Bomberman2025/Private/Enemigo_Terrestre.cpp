@@ -3,11 +3,11 @@
 
 #include "Enemigo_Terrestre.h"
 AEnemigo_Terrestre::AEnemigo_Terrestre() {
-
-	auto Asset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Wood_Floor_Walnut_Polished.M_Wood_Floor_Walnut_Polished'"));
+	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
+	RootComponent = Mesh;
+	auto Asset = ConstructorHelpers::FObjectFinder<USkeletalMesh>(TEXT("/Script/Engine.SkeletalMesh'/Game/Hechos/Equeletos/Enemigos/Bot/source/flower/Pokeball_Obj.Pokeball_Obj'"));
 	if (Asset.Object != nullptr) {
 
-		Mesh->SetMaterial(0, Asset.Object);
+		Mesh->SetSkeletalMesh(Asset.Object);
 	}
 }
-

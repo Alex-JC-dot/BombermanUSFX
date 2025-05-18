@@ -2,11 +2,13 @@
 
 
 #include "Enemigo_Acuatico.h"
-AEnemigo_Acuatico::AEnemigo_Acuatico() {
 
-	auto Asset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Water_Ocean.M_Water_Ocean'"));
+AEnemigo_Acuatico::AEnemigo_Acuatico() {
+	Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
+	RootComponent = Mesh;
+	auto Asset = ConstructorHelpers::FObjectFinder<USkeletalMesh>(TEXT("/Script/Engine.SkeletalMesh'/Game/Hechos/Equeletos/Enemigos/Rana/Omanyte/Pokeball_Obj.Pokeball_Obj'"));
 	if (Asset.Object != nullptr) {
 
-		Mesh->SetMaterial(0, Asset.Object);
+		Mesh->SetSkeletalMesh( Asset.Object);
 	}
 }

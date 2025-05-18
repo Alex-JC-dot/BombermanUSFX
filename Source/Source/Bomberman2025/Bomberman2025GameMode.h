@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "BuilderConcreto.h"
+#include "Director.h"
 #include "Bomberman2025GameMode.generated.h"
 
 UCLASS()
@@ -16,5 +18,8 @@ public:
 
 public:
     virtual void BeginPlay() override;
-   
+private:
+    ADirector* Director;
+    ABuilderConcreto* BuilderConcreto;
+    
 };

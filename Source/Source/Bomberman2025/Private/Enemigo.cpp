@@ -7,13 +7,16 @@
 AEnemigo::AEnemigo()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+		/*
 	PrimaryActorTick.bCanEverTick = true;
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Personje"));
 	Mesh->SetupAttachment(RootComponent);
-	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/LevelPrototyping/Meshes/SM_Ramp.SM_Ramp'"));
+
+	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.Blueprint'/Game/Hechos/Equeletos/source/Digglet.Digglet'"));
 	if (Asset.Object != nullptr) {
 		Mesh->SetStaticMesh(Asset.Object);
 	}
+	*/
 }
 
 // Called when the game starts or when spawned

@@ -4,12 +4,16 @@
 #include "Enemigo_Aereo.h"
 
 AEnemigo_Aereo::AEnemigo_Aereo() {
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	RootComponent = Mesh;
 
-	auto Asset = ConstructorHelpers::FObjectFinder<UMaterial>(TEXT(" /Script/Engine.Material'/Game/StarterContent/Materials/M_Tech_Hex_Tile_Pulse.M_Tech_Hex_Tile_Pulse'"));
+	auto Asset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT(" /Script/Engine.StaticMesh'/Game/Hechos/Equeletos/Enemigos/globo/SM_MERGED_StaticMeshActor_21.SM_MERGED_StaticMeshActor_21'"));
 	if (Asset.Object != nullptr) {
 
-		Mesh->SetMaterial(0, Asset.Object);
+		Mesh->SetStaticMesh(Asset.Object);
 	}
+
+
 
 
 }

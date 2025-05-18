@@ -14,5 +14,5 @@ class BOMBERMAN2025_API AEnemigo_Acuatico : public AEnemigo
 {
 	GENERATED_BODY()
 	AEnemigo_Acuatico();
-	
+	USkeletalMeshComponent* Mesh;
 };

@@ -6,7 +6,7 @@
 ABloque_Burbuja::ABloque_Burbuja() {
 
 	if (Mesh) {
-		static ConstructorHelpers::FObjectFinder<UMaterial> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Water_Lake.M_Water_Lake'"));
+		static ConstructorHelpers::FObjectFinder<UMaterial> Material(TEXT("/Script/Engine.Material'/Game/StarterContent/Materials/M_Water_Ocean.M_Water_Ocean'"));
 		if (Material.Succeeded()) {
 			Mesh->SetMaterial(0, Material.Object);
 
