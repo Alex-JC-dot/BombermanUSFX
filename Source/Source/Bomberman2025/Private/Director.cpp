@@ -35,10 +35,11 @@ void ADirector::LlamarConstructor(AActor* _Constructor)
 void ADirector::ConstruirLaberinto()
 {
 	
-	ConstructorEscenario->ConstruirBloque();
-	ConstructorEscenario->ConstruirPuerta(2);
-	ConstructorEscenario->ConstruirGrada(4);
-	ConstructorEscenario->ConstruirRefugio(1);
+	ConstructorEscenario->ConstruirBloqueFijo();
+	ConstructorEscenario->ConstruirBloqueDestructible();
+	ConstructorEscenario->ConstruirPuerta(ConstructorEscenario->GetCantidadPuertas());
+	ConstructorEscenario->ConstruirEntorno(ConstructorEscenario->GetCantidadEntorno());
+	ConstructorEscenario->ConstruirDecoracion(ConstructorEscenario->GetCantidadDecoracion());
 	
 	
 }
@@ -53,8 +54,6 @@ ALaberintoTerminado* ADirector::GetLaberinto()
 		return nullptr;
 	
 }
-void ADirector::Modificacion()
-{
-}
+
 
 

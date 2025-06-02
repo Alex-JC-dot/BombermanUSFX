@@ -13,5 +13,11 @@ UCLASS()
 class BOMBERMAN2025_API AEnemigo_Subterraneo : public AEnemigo
 {
 	GENERATED_BODY()
+	
+public:
 	AEnemigo_Subterraneo();
+	virtual IMyPrototype* Clone() override;
+protected:
+	virtual void Tick(float DeltaTime) override;
+;	
 };

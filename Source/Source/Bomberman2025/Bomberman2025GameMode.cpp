@@ -3,12 +3,14 @@
 
 #include "Bomberman2025GameMode.h"
 #include "Bomberman2025Character.h"
-#include  "Piso.h"
-#include  "Ladrillo.h"
+#include "Piso.h"
+#include "Ladrillo.h"
 #include "Ladrillo2.h"
 #include "Director.h"
+#include "Enemigo.h"
 #include "BuilderConcreto.h"
-#include "LaberintoTerminado.h"
+#include "Enemigo_Subterraneo.h"
+#include "MyPrototype.h"
 #include "UObject/ConstructorHelpers.h"
 
 ABomberman2025GameMode::ABomberman2025GameMode()
@@ -75,14 +77,16 @@ void ABomberman2025GameMode::BeginPlay()
 
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, TEXT("los bloques desapareceran en 60 segundos"));
 	}
-	//Abastract Factory
+	
 
+	DirectorEnemigos=GetWorld()->SpawnActor<ADirector_Enemigos>(ADirector_Enemigos::StaticClass());
+	BuilderEnemigos=GetWorld()->SpawnActor<ABuiilderHordaEsqueleto>(ABuiilderHordaEsqueleto::StaticClass());
 
-	Director = GetWorld()->SpawnActor<ADirector>(ADirector::StaticClass());
-	BuilderConcreto = GetWorld()->SpawnActor<ABuilderConcreto>(ABuilderConcreto::StaticClass());
-	//Ingeniero
-	Director->LlamarConstructor(BuilderConcreto);
-	Director->ConstruirLaberinto();
-	ALaberintoTerminado*Laberinto=Director->GetLaberinto();
+	DirectorEnemigos->LlamarConstructor(BuilderEnemigos);
+	DirectorEnemigos->ConstruirHorda();
+	AHordaEnemigos*Horda = DirectorEnemigos->GetHorda();
 
 }
+
+
+		
