@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Bloque.h"
+#include "NiagaraSystem.h"
+#include "NiagaraComponent.h"
 #include "Bloque_Concreto.generated.h"
 
 /**
@@ -15,5 +17,11 @@ class BOMBERMAN2025_API ABloque_Concreto : public ABloque
 	GENERATED_BODY()
 public:
 	ABloque_Concreto();
+	void Destruir() override;
+protected:
+	virtual void BeginPlay() override; 
 	
+
+
+	UNiagaraSystem* NiagaraNive;
 };

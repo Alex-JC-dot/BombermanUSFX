@@ -1,0 +1,45 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "Puerta.h"
+#include"Bomberman2025/Bomberman2025Character.h"
+#include "Bomberman2025/Bomberman2025GameMode.h"
+
+// Sets default values
+APuerta::APuerta()
+{
+ 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = true;
+	
+
+		Mesh = CreateDefaultSubobject<UStaticMeshComponent>("BaseMeshComponent"); //creamos un componente para el actor
+		RootComponent = Mesh;
+
+		auto MeshAsset = ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/Hechos/Urbano/door/PuertaUrban.PuertaUrban'"));
+		if (MeshAsset.Object != nullptr)
+		{
+			Mesh->SetStaticMesh(MeshAsset.Object);
+		}
+		Mesh->SetWorldScale3D(FVector(0.01f, 0.01f, 0.01f));
+	
+		Mesh->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		Mesh->SetCollisionResponseToAllChannels(ECR_Overlap);
+		Mesh->SetGenerateOverlapEvents(true);
+}
+
+// Called when the game starts or when spawned
+void APuerta::BeginPlay()
+{
+	Super::BeginPlay();
+	
+}
+
+// Called every frame
+void APuerta::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+}
+
+

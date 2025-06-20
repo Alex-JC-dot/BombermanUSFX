@@ -12,11 +12,14 @@ ABob2::ABob2()
 	Mesh =CreateDefaultSubobject<UStaticMeshComponent>("BaseMeshComponent"); //creamos un componente para el actor
 	RootComponent = Mesh;
 
-	auto MeshAsset =ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube'"));
+	auto MeshAsset =ConstructorHelpers::FObjectFinder<UStaticMesh>(TEXT("/Script/Engine.StaticMesh'/Engine/EngineMeshes/Sphere.Sphere'"));
 			if (MeshAsset.Object != nullptr)
 			{
 				Mesh->SetStaticMesh(MeshAsset.Object);
 			}
+
+			velociad = 800.0f;
+			DIstanciaMaxima.Y = 400;
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +33,20 @@ void ABob2::BeginPlay()
 void ABob2::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	Despegar(DeltaTime);
+}
 
+void ABob2::Despegar(float tiempo)
+{
+	FVector UbicacionActual=GetActorLocation();
+	if (UbicacionActual.Y<=DIstanciaMaxima.Y) {
+		UbicacionActual.Y += tiempo * velociad;
+		SetActorLocation(UbicacionActual);
+	}
+	else
+	{
+		Destroy();
+	}
+	
 }
 

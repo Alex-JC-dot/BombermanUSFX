@@ -2,6 +2,8 @@
 
 
 #include "Bloque.h"
+#include "Kismet/GameplayStatics.h"
+#include "Particles/ParticleSystem.h"
 
 // Sets default values
 ABloque::ABloque()
@@ -17,42 +19,37 @@ ABloque::ABloque()
 	{
 		Mesh->SetStaticMesh(MeshAsset.Object);
 	}
-	alturaMax = 1000;
-	Subiendo = false;
-	activado = false;
-};
+	Malla = Mesh->GetStaticMesh();
+	//Particula
+	static ConstructorHelpers::FObjectFinder<UParticleSystem> Particula(TEXT("ParticleSystem'/Game/StarterContent/Particles/P_Explosion.P_Explosion'"));
+	if (Particula.Succeeded())
+	{
+		Explosion = Particula.Object.Get();
+	}
+}
+
+void ABloque::Destruir()
+{
+	Destroy();
+}
+
+
 
 // Called when the game starts or when spawned
 void ABloque::BeginPlay()
 {
 	Super::BeginPlay();
-}
+	
 
-// Called every frame
+}
 void ABloque::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (!activado) return; 
-		PosicionActual = GetActorLocation();
-		if (PosicionActual.Z >= alturaMax) {
-			Subiendo = false;
-		}
-		else if (PosicionActual.Z <= 0) {
-			Subiendo = true;
-		}
-	
-	// Mover el bloque
-	MoverBloque(DeltaTime);
-}
-void ABloque::MoverBloque(float Tiempo)
-{
-	PosicionActual = GetActorLocation();
-	if (Subiendo) {
-		PosicionActual.Z += Tiempo * velocidad;
-	}
-	else {
-		PosicionActual.Z -= Tiempo * velocidad;
-	}
-	SetActorLocation(PosicionActual);
 
+	
+}
+FString ABloque::GetNombreBloque()
+{
+	//Return the name of this Potion
+	return NombreBloque;
 }

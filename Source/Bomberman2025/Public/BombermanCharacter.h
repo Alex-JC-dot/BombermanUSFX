@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "BombermanCharacter.generated.h"
-
+class AGameModeLevel2;
 UCLASS()
 class BOMBERMAN2025_API ABombermanCharacter : public ACharacter
 {
@@ -24,6 +24,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UStaticMeshComponent* Mesh ;
+	
 };

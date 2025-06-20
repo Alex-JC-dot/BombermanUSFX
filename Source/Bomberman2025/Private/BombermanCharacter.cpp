@@ -2,6 +2,7 @@
 
 
 #include "BombermanCharacter.h"
+#include "GameModeLevel2.h"
 
 // Sets default values
 ABombermanCharacter::ABombermanCharacter()
@@ -33,9 +34,5 @@ void ABombermanCharacter::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void ABombermanCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-}
 

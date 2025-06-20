@@ -15,4 +15,8 @@ class BOMBERMAN2025_API ABloque_Acero : public ABloque
 	GENERATED_BODY()
 public:
 	ABloque_Acero();
+	UStaticMesh* MeshTemporal;
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 };

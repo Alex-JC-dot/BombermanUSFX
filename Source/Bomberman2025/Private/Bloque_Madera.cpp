@@ -6,8 +6,17 @@ ABloque_Madera::ABloque_Madera()
 	if (MaterialAsset.Object != nullptr) {
 		Mesh->SetMaterial(0, MaterialAsset.Object);
 	}
-
+	static ConstructorHelpers::FObjectFinder<UMaterial>Auxiliar(TEXT(" /Script/Engine.Material'/Game/StarterContent/Materials/M_Wood_Floor_Walnut_Polished.M_Wood_Floor_Walnut_Polished'"));
+	if (Auxiliar.Succeeded()) {
+		Material2 = Auxiliar.Object;
+	}
 
 }
+void ABloque_Madera::BeginPlay()
+{
+	Super::BeginPlay();
+	NombreBloque = "Bloque Madera";
+}
+
 
 

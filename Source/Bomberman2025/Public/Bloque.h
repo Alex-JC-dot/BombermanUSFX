@@ -11,27 +11,28 @@ class BOMBERMAN2025_API ABloque : public AActor
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this actor's properties
-	ABloque();
 
+	// Sets default values for this actor's properties
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
-public:
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	UPROPERTY()
-	UStaticMeshComponent* Mesh;
 public:
-	void MoverBloque(float DeltaTime);
-	float alturaMax;
-	UPROPERTY(EditAnywhere)
-	bool activado;
-	bool Subiendo;
-	float tiempo;
-	float velocidad=200;
-	FVector PosicionActual;
-	FVector PosicionFinal;
+	ABloque();
+	UStaticMeshComponent* Mesh;
+	UStaticMesh* Malla;
+
+	UParticleSystem* Explosion;  // Efecto visual 
+
+	bool Destructible=false;
+	virtual void Destruir() ;
+
+
+public:	
+
+	FString GetNombreBloque();
+	// FACTORY METHOD
+
+protected:
+	FString NombreBloque;
 };

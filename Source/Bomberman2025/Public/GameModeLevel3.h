@@ -5,10 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
 #include "Bloque.h"
+#include "GestorEscenarios.h"
 #include "Templates/SubclassOf.h"
 #include "GameModeLevel3.generated.h"
 class ABloque;
 class AEnemigo;
+class ABloque_Madera;
+class ABloque_Acero;
 UCLASS()
 class BOMBERMAN2025_API AGameModeLevel3 : public AGameModeBase
 {
@@ -16,7 +19,6 @@ class BOMBERMAN2025_API AGameModeLevel3 : public AGameModeBase
 public:
 	AGameModeLevel3();
 protected:
-
 	virtual  void BeginPlay() override;
     TArray<TArray<int32>> MapaBloques=
 	{
@@ -79,18 +81,33 @@ protected:
 public:
 	TMap<int32, TArray<AActor*>> BloquesPorTipo;
 	//Enemigos
-	void MoverBloque();
+	//void MoverBloque();
 	void SpawnEnemigoSubterraneo(); 
-	void SpawnEnemigoAereo();
-	void SpawnEnemigoTerrestre();
-	void SpawnEnemigoAcuatico();
+
 	TArray<FVector>PuntoVacio;
 
 	// alamacenar todo en un array
-	UPROPERTY()
+	//Ejercicio 1
+	TArray<ABloque_Madera*>BloqueMadera;
+	void EliminarBLoque();
+	FTimerHandle TiempoBloques;
+	int32 IndiceLadrillo = 0;
+	//ejercicio 3
 	TArray<ABloque*> TodosLosBloques;
-	UPROPERTY()
+	TArray<TSubclassOf<ABloque>> BloquesTipo; //array que almacena tipos derivadas de clase 
+	void SpawnearBloqueRandom(FVector pos, int32 valor);
+	TArray<ABloque_Acero*>ListaBloqueAcero;
+	void BloqueAcero();
+	void EliminarBloqueAcero();
+	//ejercicio 5
+	UFUNCTION()
+	void cambiazo(ABloque_Acero* Bloque);
 	TArray<AActor*> Enemigos;
-	void MoverEnemigos();
+	void MoverEnemigos();	
 	FTimerHandle TimerMovimientoEnemigos;
+	// 
+
+	void CambiarEscenario(ETipoEscenario NuevoEscenario);
+
+	UGestorEscenarios* GestorEscenarios;
 };

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
+#include "W_HUDBomberman.h"
 #include "Bomberman2025Character.generated.h"
 
 class USpringArmComponent;
@@ -44,9 +45,56 @@ class ABomberman2025Character : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* PutBombAction;
 public:
 	ABomberman2025Character();
 	
+	int AlcanceExplosion = 2;
+	int Vidas = 5;
+
+	int BombasDisponibles = 3;
+	int BombasMaximas = 3;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = UI)
+	TSubclassOf<class UUserWidget> WidgetClaseHUD;
+
+	UPROPERTY()
+	class UW_HUDBomberman* WidgetHUD;
+
+	FTimerHandle TimerHandle_RegenerarBomba;;
+
+	float VidaActual = 250.0f;
+
+	float VidaMaxima = 250.0f;
+
+	FTimerHandle TimerHandle_Parpadeo;
+
+	int ContadorParpadeo = 0;
+	
+	FTimerHandle TimerHandle_Morir;
+
+	UAnimSequence* AnimacionMorir;
+
+
+	bool bEstaMuerto = false;
+	
+	//Sonido
+	USoundBase* SonidoColocarBomba;
+
+public:
+	void RecibirDano(int dano);
+	
+	void Morir();
+
+	void Parpadear();
+
+	void SetVidaMax(int VidaMax) { VidaMaxima = VidaMax; }
+	void SetVida(int vida) { vida = VidaActual; }
+	float ObtenerVidaPorcentaje()
+	{
+		return VidaActual / VidaMaxima;
+	}
 
 protected:
 
@@ -55,9 +103,17 @@ protected:
 
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
-			
+
+	/** Called for put a bomb input */
+	void PutBom(const FInputActionValue& Value);
+
+
+	void RegenarBomba();
 
 protected:
+	virtual void BeginPlay() override;
+
+	virtual void Tick(float DeltaTime) override;
 
 	virtual void NotifyControllerChanged() override;
 

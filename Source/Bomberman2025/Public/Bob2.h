@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+
 
 #pragma once
 
@@ -12,16 +12,23 @@ class BOMBERMAN2025_API ABob2 : public AActor
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this actor's properties
+	
 	ABob2();
 
 protected:
-	// Called when the game starts or when spawned
+
 	virtual void BeginPlay() override;
 
+private:
+	float velociad;
+	FVector DIstanciaMaxima;
+	bool Encendido;
+
 public:
-	// Called every frame
+	
 	virtual void Tick(float DeltaTime) override;
-	UPROPERTY() //macro para inicializar variables
-	UStaticMeshComponent* Mesh; // puntero
+	UPROPERTY() 
+	UStaticMeshComponent* Mesh; 
+
+	void Despegar(float tiempo);
 };

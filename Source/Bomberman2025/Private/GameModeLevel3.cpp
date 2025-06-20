@@ -3,21 +3,17 @@
 
 #include "GameModeLevel3.h"
 #include "Enemigo.h"
-#include "Enemigo_Aereo.h"
 #include "Enemigo_Subterraneo.h"
-#include "Enemigo_Terrestre.h"
-#include "Enemigo_Acuatico.h"
 #include "Bloque.h"
 #include "Bloque_Acero.h"
 #include "Bloque_Ladrillo.h"
+#include "GestorEscenarios.h"
 #include "Bloque_Concreto.h"
 #include "Bloque_Madera.h"
 #include "Bloque_Cuarzo.h"
-#include "Bloque_Burbuja.h"
-#include "Bloque_Vidrio.h"
 #include "Bloque_Hielo.h"
-#include "Bloque_Oro.h"
 #include "Bloque_Pasto.h"
+#include "HUD_Bomberman.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Engine/World.h"
 #include "Kismet/GameplayStatics.h"
@@ -29,38 +25,19 @@ AGameModeLevel3::AGameModeLevel3()
     if (PlayerPawnBPClass.Class != nullptr)
     {
         DefaultPawnClass = PlayerPawnBPClass.Class;
-	}
+	};
+    BloquesTipo.Add(ABloque_Ladrillo::StaticClass());
+    BloquesTipo.Add(ABloque_Acero::StaticClass());
+    BloquesTipo.Add(ABloque_Madera::StaticClass());
+    BloquesTipo.Add(ABloque_Concreto::StaticClass());
+
+    HUDClass = AHUD_Bomberman::StaticClass();
 }
 void AGameModeLevel3::BeginPlay()
 {
     Super::BeginPlay();
-
-    float Espaciado = 600.0f;
-    FVector Bloque_Inicial = FVector(-14953.0, -14984.187776, 0.0f);
-    TArray<FVector> Posiciones0; // para guardar los creos
-    if (GetWorld())
-    {
-        for (int fila = 0; fila < MapaBloques.Num(); fila++)//Bucle para generar 
-        {
-            for (int columna = 0; columna < MapaBloques[fila].Num(); columna++)
-            {
-                int32 valor = MapaBloques[fila][columna];
-                FVector Ubicacion_de_Bloques = Bloque_Inicial + FVector(fila * Espaciado, columna * Espaciado, 0);
-                Spawnearbloques(Ubicacion_de_Bloques, valor);
-                if (valor == 0) {
-                    PuntoVacio.Add(Ubicacion_de_Bloques);
-                }
-            }
-        }
-        for (int i = 0; i < 7; i++) {
-            SpawnEnemigoSubterraneo();
-            SpawnEnemigoTerrestre();
-            SpawnEnemigoAcuatico();
-            SpawnEnemigoAereo();
-        }
-		   GetWorld()->GetTimerManager().SetTimer(TimerMovimientoEnemigos, this, &AGameModeLevel3::MoverEnemigos, 5.0f, true);
-    }
-	MoverBloque();  
+    GestorEscenarios = NewObject<UGestorEscenarios>(this);
+  
 }
 
 void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
@@ -71,6 +48,7 @@ void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
     case 1:
     {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Ladrillo>(ABloque_Ladrillo::StaticClass(), Ubicacion, FRotator::ZeroRotator);
+
         break;
     }
     case 2:
@@ -81,11 +59,16 @@ void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
     case 3:
     {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Acero>(ABloque_Acero::StaticClass(), Ubicacion, FRotator::ZeroRotator);
+        ABloque_Acero* Bloque = Cast<ABloque_Acero>(TipoBloque);
+        ListaBloqueAcero.Add(Bloque);
         break;
     }
     case 4:
     {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Madera>(ABloque_Madera::StaticClass(), Ubicacion, FRotator::ZeroRotator);
+        ABloque_Madera* Bloque = Cast<ABloque_Madera>(TipoBloque);
+        BloqueMadera.Add(Bloque);
+
         break;
     }
     case 5:
@@ -93,26 +76,13 @@ void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Cuarzo>(ABloque_Cuarzo::StaticClass(), Ubicacion, FRotator::ZeroRotator);
         break;
     }
-    case 6:
-    {
-        TipoBloque = GetWorld()->SpawnActor<ABloque_Oro>(ABloque_Oro::StaticClass(), Ubicacion, FRotator::ZeroRotator);
-        break;
-    }
-    case 7:
-    {
-        TipoBloque = GetWorld()->SpawnActor<ABloque_Burbuja>(ABloque_Burbuja::StaticClass(), Ubicacion, FRotator::ZeroRotator);
-        break;
-    }
+
     case 8:
     {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Hielo>(ABloque_Hielo::StaticClass(), Ubicacion, FRotator::ZeroRotator);
         break;
     }
-    case 9:
-    {
-        TipoBloque = GetWorld()->SpawnActor<ABloque_Vidrio>(ABloque_Vidrio::StaticClass(), Ubicacion, FRotator::ZeroRotator);
-        break;
-    }
+
     case 10:
     {
         TipoBloque = GetWorld()->SpawnActor<ABloque_Pasto>(ABloque_Pasto::StaticClass(), Ubicacion, FRotator::ZeroRotator);
@@ -124,6 +94,7 @@ void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
     if (TipoBloque) {
         TipoBloque->SetActorScale3D(FVector(6.0f, 6.0f, 5.0f));
         TodosLosBloques.Add(TipoBloque);
+        
 
     }
     if (!BloquesPorTipo.Contains(Bloque)) {
@@ -132,36 +103,7 @@ void AGameModeLevel3::Spawnearbloques(FVector Ubicacion, int32 Bloque) {
     BloquesPorTipo[Bloque].Add(TipoBloque);
 }
  
- void AGameModeLevel3::MoverBloque()
- {
-     for (auto& Par : BloquesPorTipo)
-     {
-         TArray<AActor*>& Bloques = Par.Value;
 
-         if (Bloques.Num() > 0)
-         {
-             Bloques.Sort([](const AActor& A, const AActor& B) {
-                 return FMath::RandBool(); // Orden aleatorio
-                 });
-
-             int32 Limite = FMath::Min(5, Bloques.Num());
-             int32 Activados = 0;
-
-             for (AActor* Actor : Bloques)
-             {
-                 if (Activados >= Limite) break;
-
-                 ABloque* Bloque = Cast<ABloque>(Actor);
-                 if (Bloque && !Bloque->activado) 
-                 {
-                     Bloque->activado = true; 
-                     Activados++;
-                 }
-
-             }
-         }
-     }
- }
 
 void AGameModeLevel3::SpawnEnemigoSubterraneo()
 {
@@ -178,52 +120,65 @@ void AGameModeLevel3::SpawnEnemigoSubterraneo()
     }
 }
 
-void AGameModeLevel3::SpawnEnemigoAereo()
-{
-    if (PuntoVacio.Num() > 0)
-    {
-        int32 IndiceAleatorio = FMath::RandRange(0, PuntoVacio.Num() - 1);
-        FVector PosicionAleatoria = PuntoVacio[IndiceAleatorio];
-        AEnemigo_Aereo* EnemigoAir = GetWorld()->SpawnActor<AEnemigo_Aereo>(AEnemigo_Aereo::StaticClass(), PosicionAleatoria+FVector(0.0f,0.0f,1600.0f), FRotator::ZeroRotator);
-        if (EnemigoAir) {
-            EnemigoAir->SetActorScale3D(FVector(2.0f, 2.0f, 2.0f));
-            Enemigos.Add(EnemigoAir);
-            UE_LOG(LogTemp, Warning, TEXT("Enemigos aereos generados: %d"), Enemigos.Num());
 
-        }
-    };
+
+//Ejercicio 2
+void AGameModeLevel3::EliminarBLoque()
+{
+    if (IndiceLadrillo < BloqueMadera.Num()) {
+        ABloque_Madera* Bloque = BloqueMadera[IndiceLadrillo];
+        Bloque->Destroy();
+        IndiceLadrillo++;
+        GetWorld()->GetTimerManager().SetTimer(TiempoBloques, this, &AGameModeLevel3::EliminarBLoque, 5.0f, false);
+    }
+
 }
 
-void AGameModeLevel3::SpawnEnemigoTerrestre()
+void AGameModeLevel3::SpawnearBloqueRandom(FVector pos, int32 valor)
 {
-    if (PuntoVacio.Num() > 0)
+    if (valor == 1 || valor == 10)
     {
-        int32 IndiceAleatorio = FMath::RandRange(0, PuntoVacio.Num() - 1);
-        FVector PosicionAleatoria = PuntoVacio[IndiceAleatorio];
-        AEnemigo_Terrestre* EnemigoEarth = GetWorld()->SpawnActor<AEnemigo_Terrestre>(AEnemigo_Terrestre::StaticClass(), PosicionAleatoria + FVector(0.0f, 0.0f, -300.f), FRotator::ZeroRotator);
-        if (EnemigoEarth) {
-            EnemigoEarth->SetActorScale3D(FVector(5.0f, 5.0f, 5.0f));
-            Enemigos.Add(EnemigoEarth);
-             UE_LOG(LogTemp, Warning, TEXT("Enemigos trerrestres generados: %d"), Enemigos.Num());
-        }
-    };
+        int i = FMath::RandRange(0, BloquesTipo.Num() - 1);
+
+        ABloque* Bloque = GetWorld()->SpawnActor<ABloque>(BloquesTipo[i], pos, FRotator::ZeroRotator);
+
+            if (Bloque) 
+            {
+                Bloque->SetActorScale3D(FVector(6.0f, 6.0f, 5.0f));
+                ABloque_Madera* Bloque2 = Cast<ABloque_Madera>(Bloque);
+                ABloque_Acero* Bloque3 = Cast<ABloque_Acero>(Bloque);
+                if (Bloque2) {
+                    BloqueMadera.Add(Bloque2);
+                }
+                if (Bloque3) {
+                    ListaBloqueAcero.Add(Bloque3);
+                }
+            }
+        
+    }
 }
 
-void AGameModeLevel3::SpawnEnemigoAcuatico()
-{
-    if (PuntoVacio.Num() > 0)
-    {
-        int32 IndiceAleatorio = FMath::RandRange(0, PuntoVacio.Num() - 1);
-        FVector PosicionAleatoria = PuntoVacio[IndiceAleatorio];
-        AEnemigo_Acuatico* EnemigoWater = GetWorld()->SpawnActor<AEnemigo_Acuatico>(AEnemigo_Acuatico::StaticClass(), PosicionAleatoria + FVector(0.0f, 0.0f, -300.f), FRotator::ZeroRotator);
-        if (EnemigoWater) {
-            EnemigoWater->SetActorScale3D(FVector(1.0f, 1.0f, 1.0f));
-            Enemigos.Add(EnemigoWater);
-            UE_LOG(LogTemp, Warning, TEXT("Enemigos Acuaticos generados: %d"), Enemigos.Num());
+void AGameModeLevel3::BloqueAcero() {
+    for (ABloque_Acero* Bloque : ListaBloqueAcero) {
+        if (Bloque && Bloque->MeshTemporal) {
+            Bloque->Mesh->SetStaticMesh(Bloque->MeshTemporal);
         }
-    };
+        FTimerDelegate Delegado;
+        Delegado.BindUFunction(this, FName("cambiazo"), Bloque);
+        FTimerHandle Handle;
+        GetWorld()->GetTimerManager().SetTimer(Handle, Delegado, 5.0f, false);
+        //GetWorld()->GetTimerManager().SetTimer(TiempoBloques, this, &AGameModeLevel3::EliminarBloqueAcero, 5.0f, false);
+    }
 }
-
+void AGameModeLevel3::cambiazo(ABloque_Acero* Bloque) {
+    Bloque->Mesh->SetStaticMesh(Bloque->Malla);
+}
+void AGameModeLevel3::EliminarBloqueAcero() {
+    for (ABloque_Acero* Bloque : ListaBloqueAcero) {
+        if(Bloque)
+        Bloque->Destroy();
+    }
+}
 void AGameModeLevel3::MoverEnemigos()
 {
 
@@ -248,7 +203,11 @@ void AGameModeLevel3::MoverEnemigos()
     }
 }
 
+void AGameModeLevel3::CambiarEscenario(ETipoEscenario NuevoEscenario)
+{
+    if (GestorEscenarios)
+    {
+        GestorEscenarios->ConstruirEscenario(GetWorld(), NuevoEscenario);
+    }
 
-
-
-
+}

@@ -16,4 +16,5 @@ class BOMBERMAN2025_API ABloque_Pasto : public ABloque
 	
 public:
 	ABloque_Pasto();
-};
+	void Destruir() override;
+ };
