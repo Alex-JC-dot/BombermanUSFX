@@ -2,6 +2,8 @@
 
 El clásico renace con nuevas reglas... y más explosiones.
 
+![Icono de la Imagen](URL-de-la-imagen)
+
 ---
 
 ## 🌌 *Sinopsis del Juego*
