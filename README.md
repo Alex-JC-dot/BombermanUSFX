@@ -323,7 +323,7 @@ Incluye:
 
 ---
 
-## 🌐 *Próximamente Disponible*
+## 🌐 *Enlaces acerca del proyecto*
 
 📥 *Enlace al ejecutable ZIP*
 
