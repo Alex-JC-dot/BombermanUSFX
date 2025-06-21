@@ -325,8 +325,9 @@ Incluye:
 
 ## 🌐 *Próximamente Disponible*
 
-📥 *Enlace al ejecutable*
-sha256:50588c117b9d13cfb1ed72e7969c25e5f48fa30bd8d4d3f7b7483dd25e52af3e
+📥 *Enlace al ejecutable ZIP*
+
+[sha256:50588c117b9d13cfb1ed72e7969c25e5f48fa30bd8d4d3f7b7483dd25e52af3e](https://github.com/Alex-JC-dot/BombermanUSFX/releases/download/Tag-1/Windows.zip)
 
 ---
 
