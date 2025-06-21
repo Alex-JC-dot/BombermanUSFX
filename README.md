@@ -46,23 +46,266 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 📦 *Abstract Factory*
 
 > Generación flexible de enemigos según familia y tipo.
+```mermaid
+classDiagram
+    %% Interfaz Abstract Factory
+    class AbstractFactory {
+        <<interface>>
+        +CrearEnemigo() Enemigo
+        +CrearBloque() Bloque
+        +CrearDecoraciones() Decoracion
+    }
+
+    %% Fábricas concretas
+    class Fabrica1 {
+        +CrearEnemigo() Enemigo1
+        +CrearBloque() Bloque1
+        +CrearDecoraciones() Decoracion1
+    }
+
+    class Fabrica2 {
+        +CrearEnemigo() Enemigo2
+        +CrearBloque() Bloque2
+        +CrearDecoraciones() Decoracion2
+    }
+
+    %% Productos abstractos
+    class Enemigo {
+        <<abstract>>
+    }
+    class Bloque {
+        <<abstract>>
+    }
+    class Decoracion {
+        <<abstract>>
+    }
+
+    %% Productos concretos
+    class Enemigo1
+    class Bloque1
+    class Decoracion1
+    class Enemigo2
+    class Bloque2
+    class Decoracion2
+
+    %% Cliente
+    class Escenario {
+        +Escenario(f: AbstractFactory)
+        +OperacionesCrear()
+    }
+
+    %% Relaciones (usar --|> para herencia y --> para uso)
+    AbstractFactory <|-- Fabrica1
+    AbstractFactory <|-- Fabrica2
+
+    Enemigo <|-- Enemigo1
+    Enemigo <|-- Enemigo2
+    Bloque <|-- Bloque1
+    Bloque <|-- Bloque2
+    Decoracion <|-- Decoracion1
+    Decoracion <|-- Decoracion2
+
+    Fabrica1 ..> Enemigo1 : «crea»
+    Fabrica1 ..> Bloque1 : «crea»
+    Fabrica1 ..> Decoracion1 : «crea»
+    Fabrica2 ..> Enemigo2 : «crea»
+    Fabrica2 ..> Bloque2 : «crea»
+    Fabrica2 ..> Decoracion2 : «crea»
+
+    Escenario --> AbstractFactory : usa
+```
 
 🏗️ *Builder*
 
-> Construcción progresiva de niveles y obstáculos.
 
+
+> Construcción progresiva de niveles y obstáculos.
+```mermaid
+classDiagram
+    %% Interfaz Builder (versión compatible)
+    class Builder {
+        <<interface>>
+        +Reiniciar()
+        +builderBloques()
+        +builderEnemigos()
+        +builderPowerUp()
+    }
+
+    %% Director
+    class Director {
+        -builder: Builder
+        +Director(builder)
+        +CambiarBuilder(builder)
+        +Crear(TipoBuilder)
+    }
+
+    %% Builders concretos
+    class BuilderCiudad {
+        -Resultado: MapaCiudad
+        +Reiniciar()
+        +builderBloques()
+        +builderEnemigos()
+        +builderPowerUp()
+        +GetResultado()$ MapaCiudad
+    }
+
+    class BuilderDesierto {
+        -Resultado: MapaDesierto
+        +Reiniciar()
+        +builderBloques()
+        +builderEnemigos()
+        +builderPowerUp()
+        +GetResultado()$ MapaDesierto
+    }
+
+    class BuilderDeOtrosMundos {
+        -Resultado: MapaDeOtrosMundos
+        +Reiniciar()
+        +builderBloques()
+        +builderEnemigos()
+        +builderPowerUp()
+        +GetResultado()$ MapasDeOtrosMundos
+    }
+
+    %% Productos
+    class MapaCiudad
+    class MapaDesierto
+    class MapaDeOtrosMundos
+
+    %% Relaciones
+    Builder <|-- BuilderCiudad
+    Builder <|-- BuilderDesierto
+    Builder <|-- BuilderDeOtrosMundos
+
+    Director *-- Builder
+
+    BuilderCiudad --> MapaCiudad
+    BuilderDesierto --> MapaDesierto
+    BuilderDeOtrosMundos --> MapaDeOtrosMundos
+```
+---
 🎭 *Facade*
 
 > Control centralizado del sistema de jugador y entorno para el nivel de dificultad.
+```mermaid
+classDiagram
+    %% Widget (parte superior)
+    class Widget {
+        +OnDificultadCambiada()
+    }
 
+    %% GestorFacade (centro, conecta niveles y widget)
+    class GestorFacade {
+        -configuracion: IConfiguracion*
+        +SetConfiguracion(IConfiguracion*)
+        +EjecutarDificultad()
+        +ActualizarWidget()
+    }
+
+    %% Niveles (conectados a GestorFacade)
+    class NivelFacil {
+        +VelocidadEnemigos() 0.5
+        +ConfiguracionVida() 100
+        +ConfiguracionCantidadEnemigos() 10
+    }
+    class NivelMedio {
+        +VelocidadEnemigos() 1.0
+        +ConfiguracionVida() 70
+        +ConfiguracionCantidadEnemigos() 20
+    }
+    class NivelDificil {
+        +VelocidadEnemigos() 2.0
+        +ConfiguracionVida() 50
+        +ConfiguracionCantidadEnemigos() 30
+    }
+
+    %% Interfaz (abajo, implementada por niveles)
+    class IConfiguracion {
+        <<interface>>
+        +VelocidadEnemigos() float
+        +ConfiguracionVida() int
+        +ConfiguracionCantidadEnemigos() int
+    }
+
+    %% RELACIONES:
+    NivelFacil --|> IConfiguracion
+    NivelMedio --|> IConfiguracion
+    NivelDificil --|> IConfiguracion
+
+    GestorFacade "1" *-- "1" NivelFacil : "Usa (puntero )"
+    GestorFacade "1" *-- "1" NivelMedio : "Usa (puntero)"
+    GestorFacade "1" *-- "1" NivelDificil : "Usa (puntero)"
+    GestorFacade --> Widget : "Notifica"
+```
+---
 ⚔️ *Strategy*
 
 > Algoritmos de combate variables según distancia y contexto.
+```mermaid
+classDiagram
+    %% Contexto
+    class Contexto {
+        -Strategy estrategia
+        +SetStrategy()
+        +EjecutarUnaEstrategia()
+    }
 
+    %% Interfaz Strategy (versión compatible)
+    class Strategy {
+        <<interface>>
+        +Ejecutar()
+    }
+
+    %% Clase Enemigos
+    class Enemigos {
+        +EjecutarPersecucion()
+        +EjecutarPatrullaje()
+    }
+
+    %% Estrategias concretas
+    class EstrategiaPerseguir {
+        +Ejecutar()
+    }
+
+    class EstrategiaPatrullar {
+        +Ejecutar()
+    }
+
+    %% Relaciones
+    Contexto o--> Strategy
+    Strategy <|-- EstrategiaPerseguir
+    Strategy <|-- EstrategiaPatrullar
+    Enemigos --> EstrategiaPerseguir : "Usa para Perseguir"
+    Enemigos --> EstrategiaPatrullar : "Usa para Patrullar"
+```
+----
 🧿 *Observer*
 
 > Activación de eventos de trampas al interactuar con el entorno.
 
+```mermaid
+classDiagram
+    %% Interfaz Observer
+    class Observer {
+        <<interface>>
+        -suscriptor
+        +TrampaActivada()
+    }
+
+    %% Clase Centinela (implementa Observer)
+    class Centinela {
+        -suscriptor
+        +Atacar()
+        +TrampaActivada()
+    }
+
+    %% Relaciones (implementación múltiple)
+    Observer <|.. Centinela : "implementa"
+    Observer <|.. Centinela : "implementa" 
+    Observer <|.. Centinela : "implementa"
+    Observer <|.. Centinela : "implementa"
+    Observer <|.. Centinela : "implementa"
+```
 ---
 
 ## 🌄 *Vista Previa del Proyecto*
