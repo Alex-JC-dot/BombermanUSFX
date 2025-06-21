@@ -326,7 +326,7 @@ Incluye:
 ## 🌐 *Próximamente Disponible*
 
 📥 *Enlace al ejecutable*
-(En fase de pruebas finales y empaquetado.)
+sha256:50588c117b9d13cfb1ed72e7969c25e5f48fa30bd8d4d3f7b7483dd25e52af3e
 
 ---
 
