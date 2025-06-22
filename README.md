@@ -27,8 +27,8 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 
 ## 👨‍💻 *Equipo de Desarrollo*
 
-* 💣 *Alex Josué Calatayud Mamani Ing. Sistemas* 
-* 💣 *Luis Fernando Quispe Sullca Ing. Ciencias De La Computación*
+* 💣 *Alex Josué Calatayud Mamani         Ing. Sistemas* 
+* 💣 *Luis Fernando Quispe Sullca         Ing. Ciencias De La Computación*
 
 ---
 
