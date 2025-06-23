@@ -3,8 +3,6 @@
 El clásico renace con nuevas reglas... y más explosiones.
 
 [![Icono de la Imagen](URL-de-la-imagen)](https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/WhatsApp%20Image%202025-06-21%20at%2017.25.26.jpeg)
-![Demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDl6d2VwYWV1bG5sN3R2eWx5a2VlY2V4b2V6dGJ6eGZxZ3RmdDRmaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oKIPEqDGUULpEU0aQ/giphy.gif)
----
 
 ## 🌌 *Sinopsis del Juego*
 
