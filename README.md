@@ -2,7 +2,7 @@
 
 El clásico renace con nuevas reglas... y más explosiones.
 
-[![Bomberman FanGame](assets/logo.gif)](https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/ezgif.com-animated-gif-maker.gif)
+[![Bomberman FanGame](Assets/logo.gif)](https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/ezgif.com-animated-gif-maker.gif)
 
 ## 🌌 *Sinopsis del Juego*
 
