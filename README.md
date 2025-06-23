@@ -52,6 +52,10 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 </a>
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 
+## 📝 Licencia
+
+Este proyecto está bajo la licencia MIT.  
+Consulta el archivo [LICENSE](./LICENSE) para más detalles.
 
 
 ## 🧩 *Componentes y Módulos Clave*
