@@ -44,7 +44,7 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 
 📞*Contactos*
 <!-- Contactos:START -->
-<a href="mailto:alexcalatayud9@gmail.com">
+<a href="mailto:quispesullcaluisfernando@gmail.com">
   <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" >
 </a>
 <a href="https://github.com/Alex-JC-dot">
