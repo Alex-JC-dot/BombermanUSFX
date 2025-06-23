@@ -343,6 +343,8 @@ Incluye:
 * 📸 Capturas y escenas jugables
 * 🧾 Código fuente completo en GitHub
 
+![Captura del juego](https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(1).jpeg)
+
 ---
 
 ## 🌐 *Enlaces acerca del proyecto*
