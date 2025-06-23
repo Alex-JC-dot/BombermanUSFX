@@ -32,7 +32,7 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 <a href="https://x.com/Alex0Calatayud">
   <img src="https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white">
 </a>
-<a href="alexcalatayud9@gmail.com">
+<a href="mailto:alexcalatayud9@gmail.com">
   <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
 </a>
 <a href="https://github.com/Alex-JC-dot">
