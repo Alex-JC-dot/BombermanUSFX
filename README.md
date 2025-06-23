@@ -349,9 +349,8 @@ Incluye:
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
   <!-- Fila 1 -->
-  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(1).jpeg" alt="Captura 1" width="300"/>
-  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(2).jpeg" alt="Captura 2" width="300"/>
-  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(3).jpeg" alt="Captura 3" width="300"/>
+  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/GamePlay.gif" alt="Captura 1" width="300"/>
+  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/GamePlay2.gif" alt="Captura 2" width="300"/>
 </p>
 
 <p align="center">
