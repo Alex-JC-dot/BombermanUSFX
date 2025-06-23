@@ -342,7 +342,7 @@ Incluye:
 * 🔄 Sistema de colisiones y físicas
 * 📸 Capturas y escenas jugables
 * 🧾 Código fuente completo en GitHub
-
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 <p align="center">
   <!-- Fila 1 -->
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(1).jpeg" alt="Captura 1" width="300"/>
@@ -356,6 +356,7 @@ Incluye:
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(5).jpeg" alt="Captura 5" width="300"/>
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(6).jpeg" alt="Captura 6" width="300"/>
 </p>
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"><br><br>
 
 ---
 
