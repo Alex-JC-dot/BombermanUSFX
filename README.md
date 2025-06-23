@@ -2,7 +2,6 @@
 
 El clásico renace con nuevas reglas... y más explosiones.
 
-[![Icono de la Imagen](URL-de-la-imagen)](https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/WhatsApp%20Image%202025-06-21%20at%2017.25.26.jpeg)
 [![Bomberman FanGame](assets/logo.gif)](https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/ezgif.com-animated-gif-maker.gif)
 
 ## 🌌 *Sinopsis del Juego*
