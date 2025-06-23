@@ -30,8 +30,8 @@ Controla a un personaje icónico mientras atraviesas escenarios misteriosos, enf
 👨‍💻*Contactos*
 <!-- Contactos:START -->
 ![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=X&logoColor=white)
-<a href="mailto:alexcalatayud9@gmail.com">Contactar por correo</a>
-     <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
+<a href="mailto:alexcalatayud9@gmail.com">
+  <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Gmail" />
 </a>
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 ---
