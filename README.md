@@ -344,9 +344,17 @@ Incluye:
 * 🧾 Código fuente completo en GitHub
 
 <p align="center">
+  <!-- Fila 1 -->
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(1).jpeg" alt="Captura 1" width="300"/>
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(2).jpeg" alt="Captura 2" width="300"/>
   <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(3).jpeg" alt="Captura 3" width="300"/>
+</p>
+
+<p align="center">
+  <!-- Fila 2 -->
+  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(4).jpeg" alt="Captura 4" width="300"/>
+  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(5).jpeg" alt="Captura 5" width="300"/>
+  <img src="https://github.com/Alex-JC-dot/BombermanUSFX/raw/main/Assets/WhatsApp%20Image%202025-06-13%20at%2009.48.46%20(6).jpeg" alt="Captura 6" width="300"/>
 </p>
 
 ---
