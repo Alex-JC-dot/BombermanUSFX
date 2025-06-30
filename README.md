@@ -7,7 +7,7 @@ El clásico juego renace con nuevas reglas... y más explosiones.
 <table style="width:100%;">
   <tr>
     <td style="width:30%; text-align:center; vertical-align:top;">
-      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png" alt="Premiación" style="height:200px; width:auto;">
+      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png" alt="Premiación" style="height:220px; width:auto;">
     </td>
     <td style="width:70%; vertical-align:top; padding-left:30px;">
       <h2>🏆 Premiación</h2>
