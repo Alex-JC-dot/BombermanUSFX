@@ -8,7 +8,7 @@ El clásico juego renace con nuevas reglas... y más explosiones.
 
 - **Primer lugar**
 
-## 🗂️ Categoría
+## 👨‍💻 Categoría
 
 - **Exposición Libre**
 
