@@ -11,7 +11,7 @@ El clásico juego renace con nuevas reglas... y más explosiones.
       <p style="font-size:16px;">
         Nos enorgullece compartir que este proyecto fue galardonado con el <strong>Primer lugar</strong> en la competencia.
       </p>
-      <h2>📂 Categoría</h2>
+      <h2>👨‍💻 Categoría</h2>
       <p style="font-size:16px;">
         Este reconocimiento se obtuvo dentro de la categoría <strong>Exposición Libre</strong>.
       </p>
@@ -23,13 +23,6 @@ El clásico juego renace con nuevas reglas... y más explosiones.
 </table>
 
 
-## 🏆 Premiación
-
-- **Primer lugar**
-
-## 👨‍💻 Categoría
-
-- **Exposición Libre**
 
 ## 🌌 *Sinopsis del Juego*
 
