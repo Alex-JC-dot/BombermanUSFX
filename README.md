@@ -3,13 +3,13 @@
 El clásico juego renace con nuevas reglas... y más explosiones.
 
 ![Bomberman FanGame](https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Logo_BombermanFanGame.png)
-![Premiación]()
+![Premiación]
 <table style="width:100%;">
   <tr>
     <td style="width:30%; text-align:center; vertical-align:top;">
-      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png"  alt="Premiación" style="width:100%; max-width:220px;">
-    </td>
-     <td style="width:70%; vertical-align:top; padding-left:30px;">
+      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png" alt="Premiación" style="max-height:280px; width:auto;">
+    </td>\
+    <td style="width:70%; vertical-align:top; padding-left:30px;">
       <h2>🏆 Premiación</h2>
       <p style="font-size:16px;">
         Nos enorgullece compartir que este proyecto fue galardonado con el <strong>Primer lugar</strong> en la competencia.
@@ -21,6 +21,7 @@ El clásico juego renace con nuevas reglas... y más explosiones.
     </td>
   </tr>
 </table>
+
 
 
 ## 🏆 Premiación
