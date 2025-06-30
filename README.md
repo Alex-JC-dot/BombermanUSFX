@@ -3,6 +3,9 @@
 El clásico juego renace con nuevas reglas... y más explosiones.
 
 ![Bomberman FanGame](https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Logo_BombermanFanGame.png)
+![Premiación](https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png)
+
+
 
 ## 🏆 Premiación
 
