@@ -6,18 +6,18 @@ El clásico juego renace con nuevas reglas... y más explosiones.
 
 <table style="width:100%;">
   <tr>
-    <td style="width:30%; text-align:center; vertical-align:top;">
-      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png" alt="Premiación" style="height:280px; width:auto;">
-    </td>
-    <td style="width:70%; vertical-align:top; padding-left:30px;">
-      <h2>🏆 Premiación</h2>
+    <td style="width:70%; vertical-align:top; padding-right:30px;">
+      <h2>🏆 Premiación 1er Lugar</h2>
       <p style="font-size:16px;">
         Nos enorgullece compartir que este proyecto fue galardonado con el <strong>Primer lugar</strong> en la competencia.
       </p>
       <h2>📂 Categoría</h2>
       <p style="font-size:16px;">
-        Este reconocimiento se obtuvo dentro de la categoría <strong>Exposición Libre</strong>, destacando por creatividad, presentación y desarrollo técnico.
+        Este reconocimiento se obtuvo dentro de la categoría <strong>Exposición Libre</strong>.
       </p>
+    </td>
+    <td style="width:30%; text-align:center; vertical-align:top;">
+      <img src="https://github.com/Alex-JC-dot/BombermanUSFX/blob/main/Assets/Premiacion.png" alt="Premiación" style="height:280px; width:auto;">
     </td>
   </tr>
 </table>
